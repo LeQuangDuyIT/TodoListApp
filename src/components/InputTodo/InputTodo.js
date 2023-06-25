@@ -8,7 +8,7 @@ const InputTodo = props => {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        setInputValue(!editingItem ? '' : todoListStorage.find(editingItem).title);
+        setInputValue(editingItem && todoListStorage.find(editingItem)?.title);
     }, [editingItem]);
 
     const handleInputChange = e => {
@@ -30,7 +30,7 @@ const InputTodo = props => {
     return (
         <form className="input-space" onSubmit={!editingItem ? handleSubmitAdd : handleSubmitEdit}>
             <input type="text" placeholder="New Task" value={inputValue} onChange={handleInputChange} required />
-            <button type="submit">{!editingItem ? 'Add' : 'Edit'}</button>
+            <button className='set-press' type="submit">{!editingItem ? 'Add' : 'Edit'}</button>
         </form>
     );
 };

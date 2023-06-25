@@ -52,7 +52,7 @@ button:hover {
     justify-content: center;
     gap: 2.5px;
 }
-.filter-space button:first-child {
+.filter-space .focus-btn {
     background: var(--secondary-color);
     color: black;
 }
@@ -61,4 +61,8 @@ button:hover {
 }
 .is-clear{
     color: white;
+}
+.set-press:active{
+    transform: scale(0.96);
+    transition: .1s;
 }

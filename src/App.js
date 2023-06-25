@@ -8,11 +8,21 @@ import TodoItem from './components/TodoItem/TodoItem';
 function App() {
     const [todoList, setTodoList] = useState(todoListStorage.load());
     const [editingItem, setEditingItem] = useState(null);
+    const [filterFocus, setFilterFocus] = useState(1);
 
     const handleFilter = {
-        all: () => setTodoList(todoListStorage.load()),
-        completed: () => setTodoList(todoListStorage.load().filter(obj => obj.isCompleted)),
-        unCompleted: () => setTodoList(todoListStorage.load().filter(obj => !obj.isCompleted))
+        all: () => {
+            setTodoList(todoListStorage.load());
+            setFilterFocus(1);
+        },
+        completed: () => {
+            setTodoList(todoListStorage.load().filter(obj => obj.isCompleted));
+            setFilterFocus(2);
+        },
+        unCompleted: () => {
+            setTodoList(todoListStorage.load().filter(obj => !obj.isCompleted));
+            setFilterFocus(3);
+        }
     };
 
     const handleAddNewTodo = text => {
@@ -56,9 +66,15 @@ function App() {
             <InputTodo handleAddNewTodo={handleAddNewTodo} handleEditTodo={handleEditTodo} editingItem={editingItem} />
             <div className="body-space">
                 <div className="filter-space">
-                    <button onClick={handleFilter.all}>All</button>
-                    <button onClick={handleFilter.completed}>Completed</button>
-                    <button onClick={handleFilter.unCompleted}>Uncompleted</button>
+                    <button onClick={handleFilter.all} className={filterFocus === 1 && 'focus-btn'}>
+                        All
+                    </button>
+                    <button onClick={handleFilter.completed} className={filterFocus === 2 && 'focus-btn'}>
+                        Completed
+                    </button>
+                    <button onClick={handleFilter.unCompleted} className={filterFocus === 3 && 'focus-btn'}>
+                        Uncompleted
+                    </button>
                 </div>
                 <TodoList>
                     {todoList.map(item => (
@@ -72,7 +88,7 @@ function App() {
                     ))}
                 </TodoList>
                 {todoListStorage.load().length > 2 && (
-                    <div className="remove-all">
+                    <div className="remove-all set-press">
                         <button onClick={handleRemoveAll}>Clear All</button>
                     </div>
                 )}
