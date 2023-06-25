@@ -8,7 +8,7 @@ const InputTodo = props => {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        const todoItemEditing = todoListStorage.find(editingItem)?.title;
+        const todoItemEditing = todoListStorage.find(editingItem);
         setInputValue(todoItemEditing ? todoItemEditing.title : '');
     }, [editingItem]);
 
