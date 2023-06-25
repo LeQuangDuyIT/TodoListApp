@@ -1,0 +1,27 @@
+.color-palette {
+    display: flex;
+    flex-wrap: wrap;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(-67.5px);
+    z-index: 1;
+
+    width: 100px;
+    height: 80px;
+    border-radius: 5px;
+    padding: 1px;
+
+    background: white;
+}
+.color__wrap {
+    width: 33.33%;
+    padding: 1.5px;
+}
+.color{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}

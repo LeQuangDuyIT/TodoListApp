@@ -1,0 +1,34 @@
+:root {
+    --bg-color: #003950;
+    --alt-bg-color: #0000004d;
+    --font-color: #fff;
+    --alt-font-color: #222;
+    --primary-color: #008e9f;
+    --secondary-color: #00e4ff;
+}
+
+
+.todo-list-space {
+    max-height: 400px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding: 0 50px;
+
+    overflow-y: scroll;
+    overflow-x: visible;
+}
+.todo-list-space::-webkit-scrollbar {
+    border-radius: 10px;
+    width: 0.5rem;
+}
+.todo-list-space::-webkit-scrollbar-thumb {
+    background-color: #00b3b3;
+    border-radius: 10px;
+    height: 50px;
+    outline: 0 inset #7fffd4;
+}
+.todo-list-space::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+

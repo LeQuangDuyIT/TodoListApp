@@ -1,0 +1,21 @@
+.input-space{
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+
+    height: 46px;
+    margin-bottom: 50px;
+}
+.input-space input{
+    flex-grow: 1;
+
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+
+    font-size: 1em;
+}
+.input-space button{
+    flex-basis: 25%;
+}

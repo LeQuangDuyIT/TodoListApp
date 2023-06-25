@@ -1,0 +1,64 @@
+:root {
+    --bg-color: #003950;
+    --alt-bg-color: #0000004d;
+    --font-color: #fff;
+    --alt-font-color: #222;
+    --primary-color: #008e9f;
+    --secondary-color: #00e4ff;
+}
+.todo-item__wrap {
+    position: relative;
+
+    margin-bottom: 20px;
+}
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    height: 49px;
+    border-radius: 30px;
+    padding: 5px 20px;
+
+    background: rgb(0, 150, 136);
+}
+.todo-item__checked {
+    opacity: 0.5;
+    transition: 0.7s;
+}
+.todo-title {
+    overflow: hidden;
+
+    color: white;
+}
+.todo-item__checked .todo-title {
+    font-style: italic;
+    text-decoration: line-through;
+}
+.setting-space {
+    flex-basis: 25%;
+
+    display: flex;
+    gap: 7.5px;
+}
+.setting-space .setting-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 41px;
+    height: 41px;
+
+    padding: 12.5px;
+    border-radius: 50%;
+
+    opacity: 0.6;
+    transition: 0.7s;
+    cursor: pointer;
+}
+.setting-space .setting-btn:hover {
+    color: var(--primary-color);
+    background: var(--bg-color);
+    opacity: 1;
+}
