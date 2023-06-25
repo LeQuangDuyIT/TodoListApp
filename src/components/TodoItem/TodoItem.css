@@ -32,9 +32,12 @@
     transition: 0.7s;
 }
 .todo-title {
+    width: 100%;
     overflow: hidden;
 
     color: white;
+
+    text-align: left;
 }
 .todo-item__checked .todo-title {
     font-style: italic;
@@ -44,7 +47,7 @@
     flex-basis: 25%;
 
     display: flex;
-    gap: 7.5px;
+    gap: 5px;
 }
 .setting-space .setting-btn {
     display: flex;

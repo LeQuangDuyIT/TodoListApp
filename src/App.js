@@ -66,13 +66,13 @@ function App() {
             <InputTodo handleAddNewTodo={handleAddNewTodo} handleEditTodo={handleEditTodo} editingItem={editingItem} />
             <div className="body-space">
                 <div className="filter-space">
-                    <button onClick={handleFilter.all} className={filterFocus === 1 && 'focus-btn'}>
+                    <button onClick={handleFilter.all} className={filterFocus === 1 ? 'focus-btn' : ''}>
                         All
                     </button>
-                    <button onClick={handleFilter.completed} className={filterFocus === 2 && 'focus-btn'}>
+                    <button onClick={handleFilter.completed} className={filterFocus === 2 ? 'focus-btn' : ''}>
                         Completed
                     </button>
-                    <button onClick={handleFilter.unCompleted} className={filterFocus === 3 && 'focus-btn'}>
+                    <button onClick={handleFilter.unCompleted} className={filterFocus === 3 ? 'focus-btn' : ''}>
                         Uncompleted
                     </button>
                 </div>
