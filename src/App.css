@@ -51,6 +51,8 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 2.5px;
+
+    margin-top: 50px;
 }
 .filter-space .focus-btn {
     background: var(--secondary-color);

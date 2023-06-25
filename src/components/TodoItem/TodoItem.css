@@ -7,9 +7,12 @@
     --secondary-color: #00e4ff;
 }
 .todo-item__wrap {
+    display: flex;
+    justify-content: center;
+
     position: relative;
 
-    margin-bottom: 20px;
+    margin: 20px auto;
 }
 .todo-item {
     display: flex;
@@ -17,6 +20,7 @@
     align-items: center;
     gap: 20px;
 
+    width: 80%;
     height: 49px;
     border-radius: 30px;
     padding: 5px 20px;
