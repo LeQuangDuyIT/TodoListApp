@@ -9,7 +9,7 @@ function App() {
     const [todoList, setTodoList] = useState(todoListStorage.load());
     const [editingItem, setEditingItem] = useState(null);
     const [filterFocus, setFilterFocus] = useState(1);
-    const [showPalette, setShowPalette] = useState(false);
+    const [coloringItem, setColoringItem] = useState(false);
 
     const handleFilter = {
         all: () => {
@@ -52,7 +52,7 @@ function App() {
         setFilterFocus(1);
     };
 
-    const getIdToEditItem = id => {
+    const editItemById = id => {
         setEditingItem(id);
     };
 
@@ -61,7 +61,7 @@ function App() {
     };
 
     const showPaletteById = id => {
-        setShowPalette(id === showPalette ? null : id);
+        setColoringItem(id === coloringItem ? null : id);
     };
 
     const reRenderAfterSetColor = id => {
@@ -89,9 +89,9 @@ function App() {
                             {...item}
                             key={item.id}
                             reRenderAfterRemoveItem={reRenderAfterRemoveItem}
-                            getIdToEditItem={getIdToEditItem}
+                            editItemById={editItemById}
                             reRenderAfterSetColor={reRenderAfterSetColor}
-                            showPalette={showPalette}
+                            coloringItem={coloringItem}
                             showPaletteById={showPaletteById}
                         />
                     ))}

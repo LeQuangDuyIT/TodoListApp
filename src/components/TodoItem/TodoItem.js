@@ -10,7 +10,6 @@ const TodoItem = props => {
     const { title, id, isCompleted, color } = props;
 
     const [checked, setChecked] = useState(isCompleted);
-    const [coloringItem, setColoringItem] = useState(null);
 
     const handleCheck = () => {
         setChecked(prev => {
@@ -28,7 +27,6 @@ const TodoItem = props => {
 
     const handleTogglePalette = () => {
         props.showPaletteById(id);
-        setColoringItem(prev => (!prev ? id : null));
     };
 
     const handleSetColor = color => {
@@ -36,7 +34,7 @@ const TodoItem = props => {
         todoListStorage.edit(id, newTodo);
         props.reRenderAfterSetColor(id);
         props.showPaletteById(id);
-        setColoringItem(null);
+
     };
 
     return (
@@ -50,7 +48,7 @@ const TodoItem = props => {
                     <div className="setting-btn" onClick={handleRemoveItem}>
                         <i className="fa-solid fa-trash fa-xs"></i>
                     </div>
-                    <div className="setting-btn" onClick={() => props.getIdToEditItem(id)}>
+                    <div className="setting-btn" onClick={() => props.editItemById(id)}>
                         <i className="fa-sharp fa-solid fa-pen-to-square fa-xs"></i>
                     </div>
                     <div className="setting-btn" onClick={handleTogglePalette}>
@@ -58,7 +56,7 @@ const TodoItem = props => {
                     </div>
                 </div>
             </div>
-            {props.showPalette === id && <ColorPalette handleSetColor={handleSetColor} />}
+            {props.coloringItem === id && <ColorPalette handleSetColor={handleSetColor} />}
         </div>
     );
 };
