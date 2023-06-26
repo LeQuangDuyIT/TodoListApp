@@ -31,9 +31,7 @@ const InputTodo = props => {
     return (
         <form className="input-space" onSubmit={!editingItem ? handleSubmitAdd : handleSubmitEdit}>
             <input type="text" placeholder="New Task" value={inputValue} onChange={handleInputChange} required />
-            <button className="set-press" type="submit">
-                {!editingItem ? 'Add' : 'Edit'}
-            </button>
+            <button type="submit">{!editingItem ? 'Add' : 'Edit'}</button>
         </form>
     );
 };

@@ -27,6 +27,7 @@ const TodoItem = props => {
     };
 
     const handleTogglePalette = () => {
+        props.showPaletteById(id);
         setColoringItem(prev => (!prev ? id : null));
     };
 
@@ -34,6 +35,7 @@ const TodoItem = props => {
         const newTodo = { ...todoListStorage.find(id), color: color };
         todoListStorage.edit(id, newTodo);
         props.reRenderAfterSetColor(id);
+        props.showPaletteById(id);
         setColoringItem(null);
     };
 
@@ -56,7 +58,7 @@ const TodoItem = props => {
                     </div>
                 </div>
             </div>
-            {coloringItem && <ColorPalette handleSetColor={handleSetColor} />}
+            {props.showPalette === id && <ColorPalette handleSetColor={handleSetColor} />}
         </div>
     );
 };

@@ -9,6 +9,7 @@ function App() {
     const [todoList, setTodoList] = useState(todoListStorage.load());
     const [editingItem, setEditingItem] = useState(null);
     const [filterFocus, setFilterFocus] = useState(1);
+    const [showPalette, setShowPalette] = useState(false);
 
     const handleFilter = {
         all: () => {
@@ -47,6 +48,8 @@ function App() {
     const handleRemoveAll = () => {
         todoListStorage.removeAll();
         setTodoList([]);
+        setEditingItem(null);
+        setFilterFocus(1);
     };
 
     const getIdToEditItem = id => {
@@ -55,6 +58,10 @@ function App() {
 
     const reRenderAfterRemoveItem = id => {
         setTodoList(prev => prev.filter(obj => obj.id !== id));
+    };
+
+    const showPaletteById = id => {
+        setShowPalette(id === showPalette ? null : id);
     };
 
     const reRenderAfterSetColor = id => {
@@ -84,11 +91,13 @@ function App() {
                             reRenderAfterRemoveItem={reRenderAfterRemoveItem}
                             getIdToEditItem={getIdToEditItem}
                             reRenderAfterSetColor={reRenderAfterSetColor}
+                            showPalette={showPalette}
+                            showPaletteById={showPaletteById}
                         />
                     ))}
                 </TodoList>
                 {todoListStorage.load().length > 2 && (
-                    <div className="remove-all set-press">
+                    <div className="remove-all">
                         <button onClick={handleRemoveAll}>Clear All</button>
                     </div>
                 )}
