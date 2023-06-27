@@ -12,18 +12,17 @@ const colorList = [
     'rgb(121, 85, 72)'
 ];
 
-const ColorPalette = (props) => {
-
-    const getColorToSet = (color) => {
+const ColorPalette = props => {
+    const getColorToSet = color => {
         props.handleSetColor(color);
-    }
+    };
 
     return (
         <div className="color-palette__wrap">
             <div className="color-palette">
                 {colorList.map((color, index) => (
                     <div className="color__wrap" key={index}>
-                        <div className="color" style={{ background: color }} onClick={()=>getColorToSet(color)}></div>
+                        <div className="color" style={{ background: color }} onClick={() => getColorToSet(color)}></div>
                     </div>
                 ))}
             </div>

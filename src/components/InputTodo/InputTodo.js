@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './InputTodo.css';
-import { todoListStorage } from '../function/localStorage';
+import { todoListStorage } from '../../utils/localStorage';
 
 const InputTodo = props => {
     const { editingItem } = props;

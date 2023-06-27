@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { todoListStorage } from '../function/localStorage';
+import { todoListStorage } from '../../utils/localStorage';
 import ColorPalette from '../ColorPalette/ColorPalette';
 
 const TodoItem = props => {
@@ -32,9 +32,8 @@ const TodoItem = props => {
     const handleSetColor = color => {
         const newTodo = { ...todoListStorage.find(id), color: color };
         todoListStorage.edit(id, newTodo);
-        props.reRenderAfterSetColor(id);
+        props.reRenderAfterSetColor(id, color);
         props.showPaletteById(id);
-
     };
 
     return (
@@ -56,7 +55,7 @@ const TodoItem = props => {
                     </div>
                 </div>
             </div>
-            {props.coloringItem === id && <ColorPalette handleSetColor={handleSetColor} />}
+            {props.coloringItem === id && <ColorPalette handleSetColor={handleSetColor}/>}
         </div>
     );
 };

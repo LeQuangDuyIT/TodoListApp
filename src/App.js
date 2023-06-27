@@ -1,28 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import InputTodo from './components/InputTodo/InputTodo';
 import TodoList from './components/TodoList/TodoList';
-import { todoListStorage } from './components/function/localStorage';
+import { todoListStorage } from './utils/localStorage';
 import TodoItem from './components/TodoItem/TodoItem';
 
 function App() {
     const [todoList, setTodoList] = useState(todoListStorage.load());
     const [editingItem, setEditingItem] = useState(null);
     const [filterFocus, setFilterFocus] = useState(1);
-    const [coloringItem, setColoringItem] = useState(false);
+    const [coloringItem, setColoringItem] = useState(null);
 
     const handleFilter = {
         all: () => {
             setTodoList(todoListStorage.load());
             setFilterFocus(1);
+            setColoringItem(null);
         },
         completed: () => {
             setTodoList(todoListStorage.load().filter(obj => obj.isCompleted));
             setFilterFocus(2);
+            setColoringItem(null);
         },
         unCompleted: () => {
             setTodoList(todoListStorage.load().filter(obj => !obj.isCompleted));
             setFilterFocus(3);
+            setColoringItem(null);
         }
     };
 
@@ -41,7 +44,7 @@ function App() {
         const ediedTodo = { ...todoListStorage.find(editingItem), title: text };
         todoListStorage.edit(editingItem, ediedTodo);
 
-        setTodoList(prev => prev.map(obj => (obj.id !== editingItem ? obj : ediedTodo)));
+        setTodoList(todoList.map(todo => (todo.id === editingItem ? ediedTodo : todo)));
         setEditingItem(null);
     };
 
@@ -57,15 +60,15 @@ function App() {
     };
 
     const reRenderAfterRemoveItem = id => {
-        setTodoList(prev => prev.filter(obj => obj.id !== id));
+        setTodoList(todoList.filter(todo => todo.id !== id));
     };
 
     const showPaletteById = id => {
         setColoringItem(id === coloringItem ? null : id);
     };
 
-    const reRenderAfterSetColor = id => {
-        setTodoList(prev => prev.map(obj => (obj.id !== id ? obj : todoListStorage.find(id))));
+    const reRenderAfterSetColor = (id, color) => {
+        setTodoList(todoList.map(todo => (todo.id === id ? { ...todo, color: color } : todo)));
     };
 
     return (
