@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import InputTodo from './components/InputTodo/InputTodo';
 import TodoList from './components/TodoList/TodoList';
