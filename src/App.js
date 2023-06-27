@@ -18,12 +18,12 @@ function App() {
             setColoringItem(null);
         },
         completed: () => {
-            setTodoList(todoListStorage.load().filter(obj => obj.isCompleted));
+            setTodoList(todoListStorage.load().filter(todo => todo.isCompleted));
             setFilterFocus(2);
             setColoringItem(null);
         },
         unCompleted: () => {
-            setTodoList(todoListStorage.load().filter(obj => !obj.isCompleted));
+            setTodoList(todoListStorage.load().filter(todo => !todo.isCompleted));
             setFilterFocus(3);
             setColoringItem(null);
         }
