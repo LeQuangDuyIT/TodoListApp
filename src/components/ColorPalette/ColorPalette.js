@@ -13,6 +13,7 @@ const colorList = [
 ];
 
 const ColorPalette = props => {
+
     const getColorToSet = color => {
         props.handleSetColor(color);
     };

@@ -55,7 +55,7 @@ const TodoItem = props => {
                     </div>
                 </div>
             </div>
-            {props.coloringItem === id && <ColorPalette handleSetColor={handleSetColor}/>}
+            {props.coloringItem === id && <ColorPalette handleSetColor={handleSetColor} />}
         </div>
     );
 };

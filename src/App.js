@@ -8,25 +8,27 @@ import TodoItem from './components/TodoItem/TodoItem';
 function App() {
     const [todoList, setTodoList] = useState(todoListStorage.load());
     const [editingItem, setEditingItem] = useState(null);
-    const [filterFocus, setFilterFocus] = useState(1);
+    const [filterFocus, setFilterFocus] = useState('all');
     const [coloringItem, setColoringItem] = useState(null);
 
-    const handleFilter = {
-        all: () => {
-            setTodoList(todoListStorage.load());
-            setFilterFocus(1);
-            setColoringItem(null);
-        },
-        completed: () => {
-            setTodoList(todoListStorage.load().filter(todo => todo.isCompleted));
-            setFilterFocus(2);
-            setColoringItem(null);
-        },
-        unCompleted: () => {
-            setTodoList(todoListStorage.load().filter(todo => !todo.isCompleted));
-            setFilterFocus(3);
-            setColoringItem(null);
+    const handleFilter = filterType => {
+        let filteredList = [];
+        switch (filterType) {
+            case 'all':
+                filteredList = todoListStorage.load();
+                break;
+            case 'completed':
+                filteredList = todoListStorage.load().filter(todo => todo.isCompleted);
+                break;
+            case 'uncompleted':
+                filteredList = todoListStorage.load().filter(todo => !todo.isCompleted);
+                break;
+            default:
+                filteredList = todoListStorage.load();
         }
+        setTodoList(filteredList);
+        setFilterFocus(filterType);
+        setColoringItem(null);
     };
 
     const handleAddNewTodo = text => {
@@ -52,7 +54,7 @@ function App() {
         todoListStorage.removeAll();
         setTodoList([]);
         setEditingItem(null);
-        setFilterFocus(1);
+        setFilterFocus('all');
     };
 
     const editItemById = id => {
@@ -76,13 +78,19 @@ function App() {
             <InputTodo handleAddNewTodo={handleAddNewTodo} handleEditTodo={handleEditTodo} editingItem={editingItem} />
             <div className="body-space">
                 <div className="filter-space">
-                    <button onClick={handleFilter.all} className={filterFocus === 1 ? 'focus-btn' : ''}>
+                    <button onClick={() => handleFilter('all')} className={filterFocus === 'all' ? 'focus-btn' : ''}>
                         All
                     </button>
-                    <button onClick={handleFilter.completed} className={filterFocus === 2 ? 'focus-btn' : ''}>
+                    <button
+                        onClick={() => handleFilter('completed')}
+                        className={filterFocus === 'completed' ? 'focus-btn' : ''}
+                    >
                         Completed
                     </button>
-                    <button onClick={handleFilter.unCompleted} className={filterFocus === 3 ? 'focus-btn' : ''}>
+                    <button
+                        onClick={() => handleFilter('uncompleted')}
+                        className={filterFocus === 'uncompleted' ? 'focus-btn' : ''}
+                    >
                         Uncompleted
                     </button>
                 </div>
